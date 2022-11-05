@@ -1,0 +1,191 @@
+a:hover{
+    color: rgb(189, 183, 183);
+}
+
+a {
+    text-decoration: none; /*elimina sublinierea a link */
+    color: inherit
+}
+
+img {
+    width: 100%;
+}
+
+h1 {
+    color: #013A20;
+    font-style: italic;
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+strong {
+    font-weight: 900;
+    font-style: normal;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4%;
+    font-family:Arial, Helvetica, sans-serif;
+    background-color: #CDD193;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    background-color: #478C5C;
+    color: white;
+    padding: 10%;
+    border-radius: 8px;
+    align-items: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#form > button {
+    margin: 30px;
+}
+
+#form > .input-form {
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+#form > .input-form > label{
+    margin-right: 20px;
+}
+
+#form > .input-form > input { 
+    width: 50%;
+    color: gray;
+    border-radius: 6px;
+}
+
+#form > p {
+    color: red;
+    font-size: small;
+}
+
+button {
+    width: 25%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: #BACC81;
+    font: 100px;
+}
+
+button:hover {
+    color: rgb(142, 39, 39);
+}
+
+footer > p {
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+}
+
+.footer-link {
+    color: blue;
+}
+
+#beerList {
+    margin-top: 20px;
+    width: 66%;
+    background-color: #478C5C;
+    color: white;
+    padding: 2%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#addBeer-container {
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 66%;
+}
+
+#addBeer {
+    background-color: #478C5C;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color: white;
+}
+
+.form-display-2-cols{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.ingredient-category {
+    margin-top: 10px;
+    margin-left: 30px;
+}
+
+.input-form-add-beer {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.input-form-add-beer> label{
+    margin-right: 20px;
+}
+
+.input-form-add-beer > input { 
+    width: 50%;
+    color: gray;
+    border-radius: 6px;
+}
+
+.input-form-add-beer-amount {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.input-form-add-beer-amount > label{
+    margin-right: 5px;
+}
+
+.input-form-add-beer-amount > input { 
+    width: 15%;
+    color: gray;
+    border-radius: 6px;
+    margin-right: 5px;
+}
+
+.input-form > label:focus,
+.input-form > input:focus,
+.input-form-add-beer > label:focus,
+.input-form-add-beer > input:focus,
+.input-form-add-beer-amount > label:focus,
+.input-form-add-beer-amount > input:focus {  /* pseudoselectorul focus */
+    background-color: #BACC81;
+    color: black;
+}
+
+#addBeer{ 
+    font-size: small;
+}
+
+.button-container {
+    margin: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.button-container > button {
+    width: 40%;
+}
