@@ -34,8 +34,13 @@
                     <input type="text" id="name" name="name"/>
                 </div>
                 <div class="input-form-add-beer">
-                    <label for="volume">Volume</label>
-                    <input type="number" id="volume" name="volume"/>
+                    <div class="input-form-add-beer-amount">
+                        <label>Volume:</label>
+                        <label for="volumeValue">Value</label>
+                        <input type="number" id="volumeValue" name="volumeValue"/>
+                        <label for="volumeUnit">Unit</label>
+                        <input type="text" id="volumeUnit" name="volumeUnit"/>
+                    </div>
                 </div>
 
                 <label>Ingredients:</label><br>
@@ -50,7 +55,7 @@
                         <div class="input-form-add-beer-amount">
                             <label>Amount: </label>
                             <label for="maltAmountValue1">Value</label>
-                            <input type="number" id="maltAmountValue1" name="maltAmountName1"/>
+                            <input type="number" id="maltAmountValue1" name="maltAmountValue1"/>
                             <label for="maltAmountUnit1">Unit</label>
                             <input type="text" id="maltAmountUnit1" name="maltAmountUnit1"/>
                         </div>
@@ -63,8 +68,8 @@
                         <div class="input-form-add-beer-amount">
                             <label>Amount: </label>
                             <label for="maltAmountValue2">Value</label>
-                            <input type="number" id="maltAmountValue2" name="maltAmountName2"/>
-                            <label for="maltAmountUnit1">Unit</label>
+                            <input type="number" id="maltAmountValue2" name="maltAmountValue2"/>
+                            <label for="maltAmountUnit2">Unit</label>
                             <input type="text" id="maltAmountUnit2" name="maltAmountUnit2"/>
                         </div>
                     </div>
@@ -76,8 +81,8 @@
                         <div class="input-form-add-beer-amount">
                             <label>Amount: </label>
                             <label for="maltAmountValue3">Value</label>
-                            <input type="number" id="maltAmountValue3" name="maltAmountName3"/>
-                            <label for="maltAmountUnit1">Unit</label>
+                            <input type="number" id="maltAmountValue3" name="maltAmountValue3"/>
+                            <label for="maltAmountUnit3">Unit</label>
                             <input type="text" id="maltAmountUnit3" name="maltAmountUnit3"/>
                         </div>
                     </div>
@@ -93,7 +98,7 @@
                         <div class="input-form-add-beer-amount">
                             <label>Amount: </label>
                             <label for="hopsAmountValue1">Value</label>
-                            <input type="number" id="hopsAmountValue1" name="hopsAmountName1"/>
+                            <input type="number" id="hopsAmountValue1" name="hopsAmountValue1"/>
                             <label for="hopsAmountUnit1">Unit</label>
                             <input type="text" id="hopsAmountUnit1" name="hopsAmountUnit1"/>
                         </div>
@@ -115,8 +120,8 @@
                         <div class="input-form-add-beer-amount">
                             <label>Amount: </label>
                             <label for="hopsAmountValue2">Value</label>
-                            <input type="number" id="hopsAmountValue2" name="hopsAmountName2"/>
-                            <label for="hopsAmountUnit1">Unit</label>
+                            <input type="number" id="hopsAmountValue2" name="hopsAmountValue2"/>
+                            <label for="hopsAmountUnit2">Unit</label>
                             <input type="text" id="hopsAmountUnit2" name="hopsAmountUnit2"/>
                         </div>
                     </div>
@@ -137,8 +142,8 @@
                         <div class="input-form-add-beer-amount">
                             <label>Amount: </label>
                             <label for="hopsAmountValue3">Value</label>
-                            <input type="number" id="hopsAmountValue3" name="hopsAmountName3"/>
-                            <label for="maltAmountUnit1">Unit</label>
+                            <input type="number" id="hopsAmountValue3" name="hopsAmountValue3"/>
+                            <label for="maltAmountUnit3">Unit</label>
                             <input type="text" id="hopsAmountUnit3" name="hopsAmountUnit3"/>
                         </div>
                     </div>
@@ -184,6 +189,9 @@
                 </div>
 
             </form>
+            <div id="confirmAddition">
+                <label>The beer was added to the list</label>
+            </div>
         </div>
     </div>
  

@@ -47,26 +47,12 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#form > button {
-    margin: 30px;
-}
-
-#form > .input-form {
+.input-form {
     width: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
     display: flex;
     justify-content: center;
-}
-
-#form > .input-form > label{
-    margin-right: 20px;
-}
-
-#form > .input-form > input { 
-    width: 50%;
-    color: gray;
-    border-radius: 6px;
 }
 
 #form > p {
@@ -81,6 +67,7 @@ button {
     border: none;
     background-color: #BACC81;
     font: 100px;
+    margin: 30px;
 }
 
 button:hover {
@@ -119,6 +106,7 @@ footer > p {
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     color: white;
+    font-size: small;
 }
 
 .form-display-2-cols{
@@ -133,26 +121,25 @@ footer > p {
     margin-left: 30px;
 }
 
-.input-form-add-beer {
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.input-form-add-beer> label{
-    margin-right: 20px;
-}
-
-.input-form-add-beer > input { 
-    width: 50%;
-    color: gray;
-    border-radius: 6px;
-}
-
+.input-form-add-beer, 
 .input-form-add-beer-amount {
     width: 100%;
     margin-top: 10px;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.input-form > label,
+.input-form-add-beer > label{
+    margin-right: 20px;
+}
+
+.input-form > input,
+.input-form-add-beer > input { 
+    width: 50%;
+    color: gray;
+    border-radius: 6px;
 }
 
 .input-form-add-beer-amount > label{
@@ -174,10 +161,6 @@ footer > p {
 .input-form-add-beer-amount > input:focus {  /* pseudoselectorul focus */
     background-color: #BACC81;
     color: black;
-}
-
-#addBeer{ 
-    font-size: small;
 }
 
 .button-container {

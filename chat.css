@@ -1,34 +1,3 @@
-#chat{
-    position: fixed;
-    top: 100px;
-    width: 38px;
-    height: 38px;
-    overflow: hidden;
-    padding-left: 0%;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-
-#chatHeader{
-    background-color: burlywood;
-    color: darkred;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    width: 90%;
-    margin-bottom: 5px;
-}
-
-#chatForm{
-    background-color: cadetblue;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    width: 90%;
-}
-
 #loadingImg{
     width: 20px;
     height: 20px;
@@ -36,30 +5,4 @@
 
 #chatLoading{
     background-color: white;
-}
-
-#conversationHeader{
-    background-color: white;
-}
-
-#conversation {
-    height: 200px;
-    overflow-y: scroll;  
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-}
-
-#messageArea {
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
-}
-
-#newMessage {
-    width: 70%;
-}
-
-#sendMessage {
-    width: 20%;
 }

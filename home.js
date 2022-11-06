@@ -63,17 +63,17 @@ window.onload = function(){
     }
 
 
-    document.getElementById("volume").onblur = function(){
-        onInputBlur(this);
+    document.getElementById("volumeValue").onblur = function(){
+        onInputBlurAddBeer(this);
     }
     document.getElementById("maltAmountValue1").onblur = function(){
-        onInputBlur(this);
+        onInputBlurAddBeer(this);
     }
     document.getElementById("maltAmountValue2").onblur = function(){
-        onInputBlur(this);
+        onInputBlurAddBeer(this);
     }
     document.getElementById("maltAmountValue3").onblur = function(){
-        onInputBlur(this);
+        onInputBlurAddBeer(this);
     }
 
 }
@@ -87,7 +87,7 @@ function getLabel(inputId){
     }
 }
 
-function isValid (input){
+function isValid (input){  // is invalid if the textfield remains empty after losing focus
     return (!isNaN(input.value) && (parseFloat(input.value) >= 0));
 }
 
@@ -115,5 +115,17 @@ function onInputBlurLessThan(inputMin, inputMax){
         console.log("min orange")
         inputMin.style.backgroundColor = 'orange'
         inputMax.style.backgroundColor = 'orange'
+    }
+}
+
+function isValidAddBeer (input){  // it's ok if the number field remains empty
+    return ((!isNaN(input.value) && (parseFloat(input.value) >= 0)) || input.value=="");
+}
+
+function onInputBlurAddBeer(input){
+    if (isValidAddBeer(input)){
+        input.style.backgroundColor = 'white'
+    }else {
+        input.style.backgroundColor = 'orange'
     }
 }
