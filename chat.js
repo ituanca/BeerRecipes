@@ -1,25 +1,32 @@
 const BASE_URL = "https://api.punkapi.com/v2/"
 
-$(document).ready(function(){  // functia de start
+$(document).ready(function () {  // functia de start
     $("#beerList").hide();
     $("#search").on("click", search);
     $("#chatLoading").hide();
+
     $("#addBeer").hide();
     $("#add").on("click", add);
     $("#confirmAddition").hide();
+    $("#rejectAddition").hide();
 })
 
-function search(){
-    $("#minABV").prop("disabled",false)
-    $("#maxABV").prop("disabled",false)
+function search() {
+    $("#chatLoading").show().delay(1000).queue(displayList)
+    return false // ca sa nu isi faca refresh atunci cand apasam pe submit
+}
+
+function displayList() {
+
+    validateSearch();
 
     minABV = $("#minABV").val()
     maxABV = $("#maxABV").val()
     $("#chatLoading").hide().dequeue()
 
-    if( (!isNaN(minABV) && (parseFloat(minABV) >= 0)) && 
-        (!isNaN(maxABV) && (parseFloat(maxABV) >= 0)) && 
-        parseFloat(minABV) < parseFloat(maxABV)){
+    if ((!isNaN(minABV) && (parseFloat(minABV) >= 0)) &&
+        (!isNaN(maxABV) && (parseFloat(maxABV) >= 0)) &&
+        parseFloat(minABV) < parseFloat(maxABV)) {
 
         $.ajax({
             url: BASE_URL + "beers?abv_gt=" + minABV + "&abv_lt=" + maxABV,
@@ -28,261 +35,160 @@ function search(){
             data: null,
             dataType: "json",
             success: (data) => {
-                console.log(data)
+
+                $("#beerList").empty();  // reinitialize the list
                 $("#beerList").show()
                 $("#addBeer").show()
 
-                for(let i=0;i<data.length;i++){
+                for (let i = 0; i < data.length; i++) {
 
-                    let htmlString = "";
-                    htmlString = htmlString + "<br><h4>" + data[i].name + "</h4>" + 
-                    "<br>volume: " + data[i].volume.value + " " + data[i].volume.unit + 
-                    "<br><br>ingredients:<br>malt:<br>";
-                    
-                    for(let j = 0; j < data[i].ingredients.malt.length; j++){
-                        htmlString = htmlString + "<li>" + data[i].ingredients.malt[j].name + " - " + 
-                        data[i].ingredients.malt[j].amount.value + " " + data[i].ingredients.malt[j].amount.unit + "</li>"
-                    }
+                    let htmlString = "<div class=\"item\">";
+                    htmlString = htmlString + "<br><h4>" + data[i].name + "</h4>" +
+                        "<br>volume: " + data[i].volume.value + " " + data[i].volume.unit +
+                        "<br><br>ingredients:<br>malt:<br>";
 
-                    htmlString = htmlString +  "hops:<br>";
+                    data[i].ingredients.malt.forEach(maltIngredient => {
+                        htmlString = htmlString + "<li>" + maltIngredient.name + " - " +
+                            maltIngredient.amount.value + " " + maltIngredient.amount.unit + "</li>"
+                    });
 
-                    for(let j = 0; j < data[i].ingredients.hops.length; j++){
-                        htmlString = htmlString + "<li>" + data[i].ingredients.hops[j].name + " - " + 
-                        data[i].ingredients.hops[j].amount.value + " " + data[i].ingredients.hops[j].amount.unit + ", add: " +
-                        data[i].ingredients.hops[j].add + ", attribute: " + data[i].ingredients.hops[j].attribute + "</li>"
-                    }
+                    htmlString = htmlString + "hops:<br>";
+
+                    data[i].ingredients.hops.forEach(hopsIngredient => {
+                        htmlString = htmlString + "<li>" + hopsIngredient.name + " - " +
+                            hopsIngredient.amount.value + " " + hopsIngredient.amount.unit + ", add: " +
+                            hopsIngredient.add + ", attribute: " + hopsIngredient.attribute + "</li>"
+                    });
 
                     htmlString = htmlString + "yeast: " + data[i].ingredients.yeast + "<br><br>food pairing:";
 
-                    for(let j = 0; j < data[i].food_pairing.length; j++){
-                        htmlString = htmlString + "<li>" + data[i].food_pairing[j] + "</li>";
-                    }
+                    data[i].food_pairing.forEach(food => {
+                        htmlString = htmlString + "<li>" + food + "</li>";
+                    });
 
-                    htmlString = htmlString + "<br> abv: " + data[i].abv;
+                    htmlString = htmlString + "<br> abv: " + data[i].abv + "</div>";
 
                     $("<div>").html(htmlString).appendTo("#beerList")
                 }
-
             },
             error: errorCallback
         })
     }
 }
 
-function add(){
-    // $("#name").prop("disabled",false)
-    // $("#volumeValue").prop("disabled",false)
-    // $("#volumeUnit").prop("disabled",false)
+function add() {
 
-    // $("#maltName1").prop("disabled",false)
-    // $("#maltAmountValue1").prop("disabled",false)
-    // $("#maltAmountUnit1").prop("disabled",false)
-    // $("#maltName2").prop("disabled",false)
-    // $("#maltAmountValue2").prop("disabled",false)
-    // $("#maltAmountUnit2").prop("disabled",false)
-    // $("#maltName3").prop("disabled",false)
-    // $("#maltAmountValue3").prop("disabled",false)
-    // $("#maltAmountUnit3").prop("disabled",false)
+    validateAdd()
 
-    // $("#hopsName1").prop("disabled",false)
-    // $("#hopsAmountValue1").prop("disabled",false)
-    // $("#hopsAmountUnit1").prop("disabled",false)
-    // $("#hopsAdd1").prop("disabled",false)
-    // $("#hopsAttribute1").prop("disabled",false)
-    // $("#hopsName2").prop("disabled",false)
-    // $("#hopsAmountValue2").prop("disabled",false)
-    // $("#hopsAmountUnit2").prop("disabled",false)
-    // $("#hopsAdd2").prop("disabled",false)
-    // $("#hopsAttribute2").prop("disabled",false)
-    // $("#hopsName3").prop("disabled",false)
-    // $("#hopsAmountValue3").prop("disabled",false)
-    // $("#hopsAmountUnit3").prop("disabled",false)
-    // $("#hopsAdd3").prop("disabled",false)
-    // $("#hopsAttribute3").prop("disabled",false)
-
-    // $("#yeast").prop("disabled",false)
-
-    // $("#food1").prop("disabled",false)
-    // $("#food2").prop("disabled",false)
-    // $("#food3").prop("disabled",false)
-
-    // $("#abv").prop("disabled",false)
-
-    name_ = $("#name").val()
-    volumeValue = $("#volumeValue").val()
-    volumeUnit = $("#volumeUnit").val()
-    maltName1 = $("#maltName1").val()
-    maltAmountValue1 = $("#maltAmountValue1").val()
-    maltAmountUnit1 = $("#maltAmountUnit1").val()
-    maltName2 = $("#maltName2").val()
-    maltAmountValue2 = $("#maltAmountValue2").val()
-    maltAmountUnit2 = $("#maltAmountUnit2").val()
-    maltName3 = $("#maltName3").val()
-    maltAmountValue3 = $("#maltAmountValue3").val()
-    maltAmountUnit3 = $("#maltAmountUnit3").val()
-    hopsName1 = $("#hopsName1").val()
-    hopsAmountValue1 = $("#hopsAmountValue1").val()
-    hopsAmountUnit1 = $("#hopsAmountUnit1").val()
-    hopsAdd1 = $("#hopsAdd1").val()
-    hopsAttribute1 = $("#hopsAttribute1").val()
-    hopsName2 = $("#hopsName2").val()
-    hopsAmountValue2 = $("#hopsAmountValue2").val()
-    hopsAmountUnit2 = $("#hopsAmountUnit2").val()
-    hopsAdd2 = $("#hopsAdd2").val()
-    hopsAttribute2 = $("#hopsAttribute2").val()
-    hopsName3 = $("#hopsName3").val()
-    hopsAmountValue3 = $("#hopsAmountValue3").val()
-    hopsAmountUnit3 = $("#hopsAmountUnit3").val()
-    hopsAdd3 = $("#hopsAdd3").val()
-    hopsAttribute3 = $("#hopsAttribute3").val()
-    yeast = $("#yeast").val()
-    food1 = $("#food1").val()
-    food2 = $("#food2").val()
-    food3 = $("#food3").val()
-    abv = $("#abv").val()
+    name_val = $("#name").val()
+    volumeValue_val = $("#volumeValue").val()
+    volumeUnit_val = $("#volumeUnit").val()
+    maltName1_val = $("#maltName1").val()
+    maltAmountValue1_val = $("#maltAmountValue1").val()
+    maltAmountUnit1_val = $("#maltAmountUnit1").val()
+    maltName2_val = $("#maltName2").val()
+    maltAmountValue2_val = $("#maltAmountValue2").val()
+    maltAmountUnit2_val = $("#maltAmountUnit2").val()
+    maltName3_val = $("#maltName3").val()
+    maltAmountValue3_val = $("#maltAmountValue3").val()
+    maltAmountUnit3_val = $("#maltAmountUnit3").val()
+    hopsName1_val = $("#hopsName1").val()
+    hopsAmountValue1_val = $("#hopsAmountValue1").val()
+    hopsAmountUnit1_val = $("#hopsAmountUnit1").val()
+    hopsAdd1_val = $("#hopsAdd1").val()
+    hopsAttribute1_val = $("#hopsAttribute1").val()
+    hopsName2_val = $("#hopsName2").val()
+    hopsAmountValue2_val = $("#hopsAmountValue2").val()
+    hopsAmountUnit2_val = $("#hopsAmountUnit2").val()
+    hopsAdd2_val = $("#hopsAdd2").val()
+    hopsAttribute2_val = $("#hopsAttribute2").val()
+    hopsName3_val = $("#hopsName3").val()
+    hopsAmountValue3_val = $("#hopsAmountValue3").val()
+    hopsAmountUnit3_val = $("#hopsAmountUnit3").val()
+    hopsAdd3_val = $("#hopsAdd3").val()
+    hopsAttribute3_val = $("#hopsAttribute3").val()
+    yeast_val = $("#yeast").val()
+    food1_val = $("#food1").val()
+    food2_val = $("#food2").val()
+    food3_val = $("#food3").val()
+    abv_val = $("#abv").val()
 
     let food_pairing = [];
-    if(food1!==""){
-        food_pairing.push(food1);
+    if (food1_val !== "") {
+        food_pairing.push(food1_val);
     }
-    if(food2!==""){
-        food_pairing.push(food2);
+    if (food2_val !== "") {
+        food_pairing.push(food2_val);
     }
-    if(food3!==""){
-        food_pairing.push(food3);
+    if (food3_val !== "") {
+        food_pairing.push(food3_val);
     }
 
     $("#chatLoading").hide().dequeue()
 
-    let htmlString = "";
-    htmlString = htmlString + "<br><h4>" + name_ + "</h4>" + 
-    "<br>volume: " + volumeValue + " " + volumeUnit + 
-    "<br><br>ingredients:<br>malt:<br>";
-        
-        if(maltName1!==""){
-            htmlString = htmlString + "<li>" + maltName1 + " - " + 
-            maltAmountValue1 + " " + maltAmountUnit1 + "</li>"
+    if (validateAddReturnBoolean()) {
+
+        $("#confirmAddition").show();
+        $("#rejectAddition").hide();
+
+        let htmlString = "<div class=\"item\">";
+        htmlString = htmlString + "<br><h4>" + name_val + "</h4>" +
+            "<br>volume: " + volumeValue_val + " " + volumeUnit_val +
+            "<br><br>ingredients:<br>malt:<br>";
+
+        if (maltName1_val !== "") {
+            htmlString = htmlString + "<li>" + maltName1_val + " - " +
+                maltAmountValue1_val + " " + maltAmountUnit1_val + "</li>"
         }
-        if(maltName2!==""){
-            htmlString = htmlString + "<li>" + maltName2 + " - " + 
-            maltAmountValue2 + " " + maltAmountUnit2 + "</li>"
+        if (maltName2_val !== "") {
+            htmlString = htmlString + "<li>" + maltName2_val + " - " +
+                maltAmountValue2_val + " " + maltAmountUnit2_val + "</li>"
         }
-        if(maltName3!==""){
-            htmlString = htmlString + "<li>" + maltName3 + " - " + 
-            maltAmountValue3 + " " + maltAmountUnit3 + "</li>"
+        if (maltName3_val !== "") {
+            htmlString = htmlString + "<li>" + maltName3_val + " - " +
+                maltAmountValue3_val + " " + maltAmountUnit3_val + "</li>"
         }
 
-        htmlString = htmlString +  "hops:<br>";
+        htmlString = htmlString + "hops:<br>";
 
-        if(hopsName1!==""){
-            htmlString = htmlString + "<li>" + hopsName1 + " - " + 
-            hopsAmountValue1 + " " + hopsAmountUnit1 + ", add: " +
-            hopsAdd1 + ", attribute: " + hopsAttribute1 + "</li>"
+        if (hopsName1_val !== "") {
+            htmlString = htmlString + "<li>" + hopsName1_val + " - " +
+                hopsAmountValue1_val + " " + hopsAmountUnit1_val + ", add: " +
+                hopsAdd1_val + ", attribute: " + hopsAttribute1_val + "</li>"
         }
-        if(hopsName2!==""){
-            htmlString = htmlString + "<li>" + hopsName2 + " - " + 
-            hopsAmountValue2 + " " + hopsAmountUnit2 + ", add: " +
-            hopsAdd2 + ", attribute: " + hopsAttribute2 + "</li>"
+        if (hopsName2_val !== "") {
+            htmlString = htmlString + "<li>" + hopsName2_val + " - " +
+                hopsAmountValue2_val + " " + hopsAmountUnit2_val + ", add: " +
+                hopsAdd2_val + ", attribute: " + hopsAttribute2_val + "</li>"
         }
-        if(hopsName3!==""){
-            htmlString = htmlString + "<li>" + hopsName3 + " - " + 
-            hopsAmountValue3 + " " + hopsAmountUnit3 + ", add: " +
-            hopsAdd3 + ", attribute: " + hopsAttribute3 + "</li>"
-        }
-
-        htmlString = htmlString + "yeast: " + yeast + "<br><br>food pairing:";
-
-        for(let j = 0; j < food_pairing.length; j++){
-            htmlString = htmlString + "<li>" + food_pairing[j] + "</li>";
+        if (hopsName3_val !== "") {
+            htmlString = htmlString + "<li>" + hopsName3_val + " - " +
+                hopsAmountValue3_val + " " + hopsAmountUnit3_val + ", add: " +
+                hopsAdd3_val + ", attribute: " + hopsAttribute3_val + "</li>"
         }
 
-        htmlString = htmlString + "<br> abv: " + abv;
+        htmlString = htmlString + "yeast: " + yeast_val + "<br><br>food pairing:";
+
+        food_pairing.forEach(food_val => {
+            htmlString = htmlString + "<li>" + food_val + "</li>";
+        });
+
+        htmlString = htmlString + "<br> abv: " + abv_val + "</div>";
 
         $("<div>").html(htmlString).appendTo("#beerList")
 
-    // $.ajax({
-    //     url: BASE_URL,
-    //     method: "POST",
-    //     contentType: "application/json",
-    //     data: JSON.stringify({
-    //         name:name_,
-    //         volume:{
-    //             value:volumeValue,
-    //             unit:volumeUnit
-    //         },
-    //         ingredients:{
-    //             malt:[
-    //                 {
-    //                     name:maltName1,
-    //                     amount:{
-    //                         value:maltAmountValue1,
-    //                         unit:maltAmountUnit1
-    //                     }
-    //                 },
-    //                 {
-    //                     name:maltName2,
-    //                     amount:{
-    //                         value:maltAmountValue2,
-    //                         unit:maltAmountUnit2
-    //                     }
-    //                 },
-    //                 {
-    //                     name:maltName3,
-    //                     amount:{
-    //                         value:maltAmountValue3,
-    //                         unit:maltAmountUnit3
-    //                     }
-    //                 }
-    //             ],
-    //             hops:[
-    //                 {
-    //                     name:maltName1,
-    //                     amount:{
-    //                         value:maltAmountValue1,
-    //                         unit:maltAmountUnit1
-    //                     },
-    //                     add:hopsAdd1,
-    //                     attribute:hopsAttribute1
-    //                 },
-    //                 {
-    //                     name:maltName2,
-    //                     amount:{
-    //                         value:maltAmountValue2,
-    //                         unit:maltAmountUnit2
-    //                     },
-    //                     add:hopsAdd2,
-    //                     attribute:hopsAttribute2
-    //                 },
-    //                 {
-    //                     name:maltName3,
-    //                     amount:{
-    //                         value:maltAmountValue3,
-    //                         unit:maltAmountUnit3
-    //                     },
-    //                     add:hopsAdd3,
-    //                     attribute:hopsAttribute3
-    //                 }
-    //             ],
-    //             yeast:yeast
-    //         },
-    //         food_pairing:food_pairing,
-    //         abv:abv
-    //     }),
-    //     dataType: "json",
-    //     success: (data) => {
-    //         console.log(data)
-    //         data = data
-    //         $("#confirmAddition").show()
-    //     },
-    //     error: errorCallback
-    // })
+    } else {
+        $("#confirmAddition").hide();
+        $("#rejectAddition").show();
+    }
+
     return false
 }
 
 function errorCallback(xhr) {
     var message = "Generic error message";
-    if( xhr.responseText ) { 
-        message = $.parseJSON(xhr.responseText).message; 
-    } 
-    console.log( message );
+    if (xhr.responseText) {
+        message = $.parseJSON(xhr.responseText).message;
+    }
+    console.log(message);
 }

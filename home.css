@@ -32,6 +32,11 @@ body {
     padding: 4%;
     font-family:Arial, Helvetica, sans-serif;
     background-color: #CDD193;
+    background-image: url("images/b.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    width: auto;
 }
 
 #form {
@@ -94,6 +99,13 @@ footer > p {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.item {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #5ba371;
+    border-radius: 10px;
+}
+
 #addBeer-container {
     margin-top: 20px;
     margin-left: 20px;
@@ -102,7 +114,7 @@ footer > p {
 
 #addBeer {
     background-color: #478C5C;
-    padding: 20px;
+    padding: 40px;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     color: white;
@@ -118,16 +130,16 @@ footer > p {
 
 .ingredient-category {
     margin-top: 10px;
-    margin-left: 30px;
+    margin-left: 20px;
 }
 
 .input-form-add-beer, 
 .input-form-add-beer-amount {
     width: 100%;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     display: flex;
-    justify-content: center;
+    justify-content: left;
 }
 
 .input-form > label,
@@ -137,7 +149,6 @@ footer > p {
 
 .input-form > input,
 .input-form-add-beer > input { 
-    width: 50%;
     color: gray;
     border-radius: 6px;
 }
@@ -171,4 +182,35 @@ footer > p {
 
 .button-container > button {
     width: 40%;
+}
+
+#loadingImg{
+    width: 20px;
+    height: 20px;
+}
+
+#confirmAddition > label {
+    color: greenyellow;
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    margin: 10px;
+}
+
+#rejectAddition > label {
+    color: rgb(167, 11, 11);
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    margin: 10px;
+}
+
+.label-beer-attribute {
+    font-size: 15px;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
 }

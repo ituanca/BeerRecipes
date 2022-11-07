@@ -20,6 +20,10 @@
             <input type="text" id="maxABV" name="maxABV"/>
         </div>
         <button type="submit" id="search"><strong>Search</strong></button>
+        <div id="chatLoading">
+            <img src="loading.gif" id="loadingImg"/>
+            Processing...
+        </div>
     </form>
 
     <div class="form-display-2-cols">
@@ -28,14 +32,16 @@
         <div id="addBeer-container">
             <form id="addBeer">
 
-                <h3>Add beer</h3>
+                <h2>Add a new beer recipe to the list</h2>
+    
                 <div class="input-form-add-beer">
-                    <label for="name">Name</label>
+                    <label for="name"><strong>Name: </strong></label>
                     <input type="text" id="name" name="name"/>
                 </div>
+                
                 <div class="input-form-add-beer">
-                    <div class="input-form-add-beer-amount">
-                        <label>Volume:</label>
+                    <div class="input-form-add-beer-amount">    
+                        <label><strong>Volume: </strong></label>   
                         <label for="volumeValue">Value</label>
                         <input type="number" id="volumeValue" name="volumeValue"/>
                         <label for="volumeUnit">Unit</label>
@@ -43,10 +49,10 @@
                     </div>
                 </div>
 
-                <label>Ingredients:</label><br>
+                <h3>Ingredients:</h3>
 
                 <div class="ingredient-category">
-                    <br><label><strong>Malt</strong></label>
+                    <br><label><strong>Malt:</strong></label><br><br>
                     <div class="input-form-add-beer">
                         <label for="maltName1">1. Name</label>
                         <input type="text" id="maltName1" name="maltName1"/>
@@ -60,6 +66,9 @@
                             <input type="text" id="maltAmountUnit1" name="maltAmountUnit1"/>
                         </div>
                     </div>
+                    
+                    <br>
+
                     <div class="input-form-add-beer">
                         <label for="maltName2">2. Name</label>
                         <input type="text" id="maltName2" name="maltName2"/>
@@ -73,6 +82,9 @@
                             <input type="text" id="maltAmountUnit2" name="maltAmountUnit2"/>
                         </div>
                     </div>
+                    
+                    <br>
+
                     <div class="input-form-add-beer">
                         <label for="maltName3">3. Name</label>
                         <input type="text" id="maltName3" name="maltName3"/>
@@ -89,7 +101,7 @@
                 </div>
 
                 <div class="ingredient-category">
-                    <br><label><strong>Hops</strong></label>
+                    <br><label><strong>Hops:</strong></label><br><br>
                     <div class="input-form-add-beer">
                         <label for="hopsName1">1. Name</label>
                         <input type="text" id="hopsName1" name="hopsName1"/>
@@ -111,6 +123,8 @@
                         <label for="hopsAttribute1">Attribute</label>
                         <input type="text" id="hopsAttribute1" name="hopsAttribute1"/>
                     </div>
+                    
+                    <br>
 
                     <div class="input-form-add-beer">
                         <label for="hopsName2">2. Name</label>
@@ -133,6 +147,8 @@
                         <label for="hopsAttribute2">Attribute</label>
                         <input type="text" id="hopsAttribute2" name="hopsAttribute2"/>
                     </div>
+
+                    <br>
 
                     <div class="input-form-add-beer">
                         <label for="hopsName3">3. Name</label>
@@ -158,13 +174,13 @@
                 </div>
 
                 <div class="ingredient-category">
+                    <br><label for="yeast"><strong>Yeast:</strong></label>
                     <div class="input-form-add-beer">
-                        <br><label for="yeast"><strong>Yeast</strong></label>
                         <input type="text" id="yeast" name="yeast"/>
                     </div> 
                 </div>
 
-                <label>Food pairing: </label><br>
+                <br><label><strong>Food pairing: </strong></label><br>
                 <div class="input-form-add-beer">
                     <label for="food1">1. </label>
                     <input type="text" id="food1" name="food1"/>
@@ -178,8 +194,10 @@
                     <input type="text" id="food3" name="food3"/>
                 </div>
 
+                <br>
+
                 <div class="input-form-add-beer">
-                    <label for="abv">ABV: </label>
+                    <label for="abv"><strong>ABV: </strong></label>
                     <input type="number" id="abv" name="abv"/>
                 </div>
 
@@ -188,21 +206,25 @@
                     <button type="submit" id="edit"><strong>Edit</strong></button>
                 </div>
 
+                <div id="confirmAddition">
+                    <label>The beer was successfully added to the list!</label>
+                </div>
+
+                <div id="rejectAddition">
+                    <label>The beer cannot be added to the list!</label>
+                </div>
+
             </form>
-            <div id="confirmAddition">
-                <label>The beer was added to the list</label>
-            </div>
         </div>
     </div>
  
-
     <footer>
         <p> &copy; 2022 <u><a href="http://cgis.utcluj.ro" target="_blank" class="footer-link">Computer Graphics and Interactive Systems</a></u> </p>
     </footer>
 
  </BODY>
 
- <script src="home.js" type="text/javascript"></script>
+ <script src="validation.js" type="text/javascript"></script>
  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  <script src="chat.js" type="text/javascript"></script>
 
