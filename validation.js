@@ -3,234 +3,48 @@ const validators ={
 }
 
 window.onload = function () {
-    document.getElementById("minABV").onblur = function () {
-        onInputBlurPositiveNumber(this);
-    }
-    document.getElementById("minABV").onfocus = function () {
-        onInputFocus(this);
-    }
-    document.getElementById("maxABV").onblur = function () {
-        onInputBlurPositiveNumber(this);
-    }
-    document.getElementById("maxABV").onfocus = function () {
-        onInputFocus(this);
-    }
-    document.getElementById("volumeValue").onblur = function () {
-        onInputBlurPositiveNumberOrEmpty(this);
-    }
-    document.getElementById("volumeValue").onfocus = function () {
-        onInputFocus(this);
-    }
-    document.getElementById("maltAmountValue1").onblur = function () {
-        onInputBlurPositiveNumberOrEmpty(this);
-    }
-    document.getElementById("maltAmountValue1").onfocus = function () {
-        onInputFocus(this);
-    }
-    document.getElementById("maltAmountValue2").onblur = function () {
-        onInputBlurPositiveNumberOrEmpty(this);
-    }
-    document.getElementById("maltAmountValue2").onfocus = function () {
-        onInputFocus(this);
-    }
-    document.getElementById("maltAmountValue3").onblur = function () {
-        onInputBlurPositiveNumberOrEmpty(this);
-    }
-    document.getElementById("maltAmountValue3").onfocus = function () {
-        onInputFocus(this);
-    }
-    document.getElementById("hopsAmountValue1").onblur = function () {
-        onInputBlurPositiveNumberOrEmpty(this);
-    }
-    document.getElementById("hopsAmountValue1").onfocus = function () {
-        onInputFocus(this);
-    }
-    document.getElementById("hopsAmountValue2").onblur = function () {
-        onInputBlurPositiveNumberOrEmpty(this);
-    }
-    document.getElementById("hopsAmountValue2").onfocus = function () {
-        onInputFocus(this);
-    }
-    document.getElementById("hopsAmountValue3").onblur = function () {
-        onInputBlurPositiveNumberOrEmpty(this);
-    }
-    document.getElementById("hopsAmountValue3").onfocus = function () {
-        onInputFocus(this);
-    }
-    document.getElementById("abv").onblur = function () {
-        onInputBlurPositiveNumberOrEmpty(this);
-    }
-    document.getElementById("abv").onfocus = function () {
-        onInputFocus(this);
-    }
+    manageFieldStatePositiveNumber("minABV")
+    manageFieldStatePositiveNumber("maxABV")
 
-    document.getElementById("name").onblur = function () {
-        onInputBlurWord(this, validators.word);
-    }
-    document.getElementById("name").onfocus = function () {
-        onInputFocus(this);
-    }
+    manageFieldStatePositiveNumberOrEmpty("volumeValue")
 
-    document.getElementById("volumeUnit").onblur = function () {
-        onInputBlurWordOrEmpty(this, validators.word);
-    }
-    document.getElementById("volumeUnit").onfocus = function () {
-        onInputFocus(this);
-    }
+    manageFieldStatePositiveNumberOrEmpty("maltAmountValue1")
+    manageFieldStatePositiveNumberOrEmpty("maltAmountValue2")
+    manageFieldStatePositiveNumberOrEmpty("maltAmountValue3")
 
-    document.getElementById("maltName1").onblur = function () {
-        onInputBlurWordOrEmpty(this, validators.word);
-    }
-    document.getElementById("maltName1").onfocus = function () {
-        onInputFocus(this);
-    }
+    manageFieldStatePositiveNumberOrEmpty("hopsAmountValue1")
+    manageFieldStatePositiveNumberOrEmpty("hopsAmountValue2")
+    manageFieldStatePositiveNumberOrEmpty("hopsAmountValue3")
+    manageFieldStatePositiveNumberOrEmpty("abv")
 
-    document.getElementById("maltAmountUnit1").onblur = function () {
-        onInputBlurWordOrEmpty(this, validators.word);
-    }
-    document.getElementById("maltAmountUnit1").onfocus = function () {
-        onInputFocus(this);
-    }
+    manageFieldStateWord("name", validators.word)
+    manageFieldStateWordOrEmpty("volumeUnit",validators.word)
 
-    document.getElementById("maltName2").onblur = function () {
-        onInputBlurWordOrEmpty(this, validators.word);
-    }
-    document.getElementById("maltName2").onfocus = function () {
-        onInputFocus(this);
-    }
+    manageFieldStateWordOrEmpty("maltName1",validators.word)
+    manageFieldStateWordOrEmpty("maltAmountUnit1",validators.word)
+    manageFieldStateWordOrEmpty("maltName2",validators.word)
+    manageFieldStateWordOrEmpty("maltAmountUnit2",validators.word)
+    manageFieldStateWordOrEmpty("maltName3",validators.word)
+    manageFieldStateWordOrEmpty("maltAmountUnit3",validators.word)
 
-    document.getElementById("maltAmountUnit2").onblur = function () {
-        onInputBlurWordOrEmpty(this, validators.word);
-    }
-    document.getElementById("maltAmountUnit2").onfocus = function () {
-        onInputFocus(this);
-    }
+    manageFieldStateWordOrEmpty("hopsName1",validators.word)
+    manageFieldStateWordOrEmpty("hopsAmountUnit1",validators.word)
+    manageFieldStateWordOrEmpty("hopsAdd1",validators.word)
+    manageFieldStateWordOrEmpty("hopsAttribute1",validators.word)
+    manageFieldStateWordOrEmpty("hopsName2",validators.word)
+    manageFieldStateWordOrEmpty("hopsAmountUnit2",validators.word)
+    manageFieldStateWordOrEmpty("hopsAdd2",validators.word)
+    manageFieldStateWordOrEmpty("hopsAttribute2",validators.word)
+    manageFieldStateWordOrEmpty("hopsName3",validators.word)
+    manageFieldStateWordOrEmpty("hopsAmountUnit3",validators.word)
+    manageFieldStateWordOrEmpty("hopsAdd3",validators.word)
+    manageFieldStateWordOrEmpty("hopsAttribute3",validators.word)
 
-    document.getElementById("maltName3").onblur = function () {
-        onInputBlurWordOrEmpty(this, validators.word);
-    }
-    document.getElementById("maltName3").onfocus = function () {
-        onInputFocus(this);
-    }
-
-    document.getElementById("maltAmountUnit3").onblur = function () {
-        onInputBlurWordOrEmpty(this, validators.word);
-    }
-    document.getElementById("maltAmountUnit3").onfocus = function () {
-        onInputFocus(this);
-    }
-
-    document.getElementById("hopsName1").onblur = function () {
-        onInputBlurWordOrEmpty(this, validators.word);
-    }
-    document.getElementById("hopsName1").onfocus = function () {
-        onInputFocus(this);
-    }
-
-    document.getElementById("hopsAmountUnit1").onblur = function () {
-        onInputBlurWordOrEmpty(this, validators.word);
-    }
-    document.getElementById("hopsAmountUnit1").onfocus = function () {
-        onInputFocus(this);
-    }
-
-    document.getElementById("hopsAdd1").onblur = function () {
-        onInputBlurWordOrEmpty(this, validators.word);
-    }
-    document.getElementById("hopsAdd1").onfocus = function () {
-        onInputFocus(this);
-    }
-
-    document.getElementById("hopsAttribute1").onblur = function () {
-        onInputBlurWordOrEmpty(this, validators.word);
-    }
-    document.getElementById("hopsAttribute1").onfocus = function () {
-        onInputFocus(this);
-    }
-
-    document.getElementById("hopsName2").onblur = function () {
-        onInputBlurWordOrEmpty(this, validators.word);
-    }
-    document.getElementById("hopsName2").onfocus = function () {
-        onInputFocus(this);
-    }
-
-    document.getElementById("hopsAmountUnit2").onblur = function () {
-        onInputBlurWordOrEmpty(this, validators.word);
-    }
-    document.getElementById("hopsAmountUnit2").onfocus = function () {
-        onInputFocus(this);
-    }
-
-    document.getElementById("hopsAdd2").onblur = function () {
-        onInputBlurWordOrEmpty(this, validators.word);
-    }
-    document.getElementById("hopsAdd2").onfocus = function () {
-        onInputFocus(this);
-    }
-
-    document.getElementById("hopsAttribute2").onblur = function () {
-        onInputBlurWordOrEmpty(this, validators.word);
-    }
-    document.getElementById("hopsAttribute2").onfocus = function () {
-        onInputFocus(this);
-    }
-
-    document.getElementById("hopsName3").onblur = function () {
-        onInputBlurWordOrEmpty(this, validators.word);
-    }
-    document.getElementById("hopsName3").onfocus = function () {
-        onInputFocus(this);
-    }
-
-    document.getElementById("hopsAmountUnit3").onblur = function () {
-        onInputBlurWordOrEmpty(this, validators.word);
-    }
-    document.getElementById("hopsAmountUnit3").onfocus = function () {
-        onInputFocus(this);
-    }
-
-    document.getElementById("hopsAdd3").onblur = function () {
-        onInputBlurWordOrEmpty(this, validators.word);
-    }
-    document.getElementById("hopsAdd3").onfocus = function () {
-        onInputFocus(this);
-    }
-
-    document.getElementById("hopsAttribute3").onblur = function () {
-        onInputBlurWordOrEmpty(this, validators.word);
-    }
-    document.getElementById("hopsAttribute3").onfocus = function () {
-        onInputFocus(this);
-    }
-
-    document.getElementById("yeast").onblur = function () {
-        onInputBlurWordOrEmpty(this, validators.word);
-    }
-    document.getElementById("yeast").onfocus = function () {
-        onInputFocus(this);
-    }
-
-    document.getElementById("food1").onblur = function () {
-        onInputBlurWordOrEmpty(this, validators.word);
-    }
-    document.getElementById("food1").onfocus = function () {
-        onInputFocus(this);
-    }
-
-    document.getElementById("food2").onblur = function () {
-        onInputBlurWordOrEmpty(this, validators.word);
-    }
-    document.getElementById("food2").onfocus = function () {
-        onInputFocus(this);
-    }
-
-    document.getElementById("food3").onblur = function () {
-        onInputBlurWordOrEmpty(this, validators.word);
-    }
-    document.getElementById("food3").onfocus = function () {
-        onInputFocus(this);
-    }
+    manageFieldStateWordOrEmpty("yeast",validators.word)
+    
+    manageFieldStateWordOrEmpty("food1",validators.word)
+    manageFieldStateWordOrEmpty("food2",validators.word)
+    manageFieldStateWordOrEmpty("food3",validators.word)
     
     document.getElementById("form").onreset = function () {
         let inputs = document.getElementsByTagName('input')
@@ -241,6 +55,43 @@ window.onload = function () {
     }
 
 }
+
+function manageFieldStatePositiveNumber(tag){
+    document.getElementById(tag).onblur = function () {
+        onInputBlurPositiveNumber(this);
+    }
+    document.getElementById(tag).onfocus = function () {
+        onInputFocus(this);
+    }
+}
+
+function manageFieldStatePositiveNumberOrEmpty(tag){
+    document.getElementById(tag).onblur = function () {
+        onInputBlurPositiveNumberOrEmpty(this);
+    }
+    document.getElementById(tag).onfocus = function () {
+        onInputFocus(this);
+    }
+}
+
+function manageFieldStateWord(tag, regex){
+    document.getElementById(tag).onblur = function () {
+        onInputBlurWord(this, regex);
+    }
+    document.getElementById(tag).onfocus = function () {
+        onInputFocus(this);
+    }
+}
+
+function manageFieldStateWordOrEmpty(tag, regex){
+    document.getElementById(tag).onblur = function () {
+        onInputBlurWordOrEmpty(this, regex);
+    }
+    document.getElementById(tag).onfocus = function () {
+        onInputFocus(this);
+    }
+}
+
 
 function getLabel(inputId) {
     let labels = document.getElementsByTagName('label')
@@ -367,41 +218,41 @@ function validateSearch() {
     document.getElementById("errors").replaceWith(errors_par)
 }
 
+let name_ = document.getElementById("name")
+let volumeValue = document.getElementById("volumeValue")
+let volumeUnit = document.getElementById("volumeUnit")
+let maltName1 = document.getElementById("maltName1")
+let maltAmountValue1 = document.getElementById("maltAmountValue1")
+let maltAmountUnit1 = document.getElementById("maltAmountUnit1")
+let maltName2 = document.getElementById("maltName2")
+let maltAmountValue2 = document.getElementById("maltAmountValue2")
+let maltAmountUnit2 = document.getElementById("maltAmountUnit2")
+let maltName3 = document.getElementById("maltName3")
+let maltAmountValue3 = document.getElementById("maltAmountValue3")
+let maltAmountUnit3 = document.getElementById("maltAmountUnit3")
+let hopsName1 = document.getElementById("hopsName1")
+let hopsAmountValue1 = document.getElementById("hopsAmountValue1")
+let hopsAmountUnit1 = document.getElementById("hopsAmountUnit1")
+let hopsAdd1 = document.getElementById("hopsAdd1")
+let hopsAttribute1 = document.getElementById("hopsAttribute1")
+let hopsName2 = document.getElementById("hopsName2")
+let hopsAmountValue2 = document.getElementById("hopsAmountValue2")
+let hopsAmountUnit2 = document.getElementById("hopsAmountUnit2")
+let hopsAdd2 = document.getElementById("hopsAdd2")
+let hopsAttribute2 = document.getElementById("hopsAttribute2")
+let hopsName3 = document.getElementById("hopsName3")
+let hopsAmountValue3 = document.getElementById("hopsAmountValue3")
+let hopsAmountUnit3 = document.getElementById("hopsAmountUnit3")
+let hopsAdd3 = document.getElementById("hopsAdd3")
+let hopsAttribute3 = document.getElementById("hopsAttribute3")
+let yeast = document.getElementById("yeast")
+let food1 = document.getElementById("food1")
+let food2 = document.getElementById("food2")
+let food3 = document.getElementById("food3")
+let abv = document.getElementById("abv")
+
 function validateAdd() {
     
-    name_ = document.getElementById("name")
-    volumeValue = document.getElementById("volumeValue")
-    volumeUnit = document.getElementById("volumeUnit")
-    maltName1 = document.getElementById("maltName1")
-    maltAmountValue1 = document.getElementById("maltAmountValue1")
-    maltAmountUnit1 = document.getElementById("maltAmountUnit1")
-    maltName2 = document.getElementById("maltName2")
-    maltAmountValue2 = document.getElementById("maltAmountValue2")
-    maltAmountUnit2 = document.getElementById("maltAmountUnit2")
-    maltName3 = document.getElementById("maltName3")
-    maltAmountValue3 = document.getElementById("maltAmountValue3")
-    maltAmountUnit3 = document.getElementById("maltAmountUnit3")
-    hopsName1 = document.getElementById("hopsName1")
-    hopsAmountValue1 = document.getElementById("hopsAmountValue1")
-    hopsAmountUnit1 = document.getElementById("hopsAmountUnit1")
-    hopsAdd1 = document.getElementById("hopsAdd1")
-    hopsAttribute1 = document.getElementById("hopsAttribute1")
-    hopsName2 = document.getElementById("hopsName2")
-    hopsAmountValue2 = document.getElementById("hopsAmountValue2")
-    hopsAmountUnit2 = document.getElementById("hopsAmountUnit2")
-    hopsAdd2 = document.getElementById("hopsAdd2")
-    hopsAttribute2 = document.getElementById("hopsAttribute2")
-    hopsName3 = document.getElementById("hopsName3")
-    hopsAmountValue3 = document.getElementById("hopsAmountValue3")
-    hopsAmountUnit3 = document.getElementById("hopsAmountUnit3")
-    hopsAdd3 = document.getElementById("hopsAdd3")
-    hopsAttribute3 = document.getElementById("hopsAttribute3")
-    yeast = document.getElementById("yeast")
-    food1 = document.getElementById("food1")
-    food2 = document.getElementById("food2")
-    food3 = document.getElementById("food3")
-    abv = document.getElementById("abv")
-
     onInputBlurPositiveNumberOrEmpty(volumeValue)
     onInputBlurPositiveNumberOrEmpty(maltAmountValue1)
     onInputBlurPositiveNumberOrEmpty(maltAmountValue2)
@@ -446,39 +297,6 @@ function validateAdd() {
 }
 
 function validateAddReturnBoolean() {
-
-    name_ = document.getElementById("name")
-    volumeValue = document.getElementById("volumeValue")
-    volumeUnit = document.getElementById("volumeUnit")
-    maltName1 = document.getElementById("maltName1")
-    maltAmountValue1 = document.getElementById("maltAmountValue1")
-    maltAmountUnit1 = document.getElementById("maltAmountUnit1")
-    maltName2 = document.getElementById("maltName2")
-    maltAmountValue2 = document.getElementById("maltAmountValue2")
-    maltAmountUnit2 = document.getElementById("maltAmountUnit2")
-    maltName3 = document.getElementById("maltName3")
-    maltAmountValue3 = document.getElementById("maltAmountValue3")
-    maltAmountUnit3 = document.getElementById("maltAmountUnit3")
-    hopsName1 = document.getElementById("hopsName1")
-    hopsAmountValue1 = document.getElementById("hopsAmountValue1")
-    hopsAmountUnit1 = document.getElementById("hopsAmountUnit1")
-    hopsAdd1 = document.getElementById("hopsAdd1")
-    hopsAttribute1 = document.getElementById("hopsAttribute1")
-    hopsName2 = document.getElementById("hopsName2")
-    hopsAmountValue2 = document.getElementById("hopsAmountValue2")
-    hopsAmountUnit2 = document.getElementById("hopsAmountUnit2")
-    hopsAdd2 = document.getElementById("hopsAdd2")
-    hopsAttribute2 = document.getElementById("hopsAttribute2")
-    hopsName3 = document.getElementById("hopsName3")
-    hopsAmountValue3 = document.getElementById("hopsAmountValue3")
-    hopsAmountUnit3 = document.getElementById("hopsAmountUnit3")
-    hopsAdd3 = document.getElementById("hopsAdd3")
-    hopsAttribute3 = document.getElementById("hopsAttribute3")
-    yeast = document.getElementById("yeast")
-    food1 = document.getElementById("food1")
-    food2 = document.getElementById("food2")
-    food3 = document.getElementById("food3")
-    abv = document.getElementById("abv")
 
     let regex = validators.word;
 
